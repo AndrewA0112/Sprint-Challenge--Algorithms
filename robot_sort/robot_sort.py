@@ -98,16 +98,16 @@ class SortingRobot:
         """
         # Fill this out
         self.swap_item()
-        while self.can_move_right(): 
-            self.move_right()
-            if self.compare_item() == 1:
+        self.set_light_off()
+        while self.move_right(): 
+            if self.compare_item() == 1: # If Statement will pick up item being compared, then go back and swap it with `None`, then will come back and pick up the original item and put down `None`
                 self.set_light_on()
                 self.swap_item()
                 self.move_left()
                 self.swap_item()
                 self.move_right()
                 self.swap_item()
-            else:
+            else: # Same as above, but will not touch the item being compared, will only go back and replace item in hand with `None` and come back and up the item that was greater
                 self.move_left()
                 self.swap_item()
                 self.move_right()
@@ -115,7 +115,6 @@ class SortingRobot:
         
         self.swap_item()
         if self.light_is_on():
-            self.set_light_off()
             while self.can_move_left():
                 self.move_left()
             self.sort()
